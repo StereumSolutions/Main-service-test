@@ -24,10 +24,10 @@ public class ProgramManagerTests {
 
     @Test
     void findProgramById(){
-        final var expectedProgram = Optional.of(new Program(1, "testname", "testDescription", "imagestream"));
+        final Optional<Program> expectedProgram = Optional.of(new Program(1, "testname", "testDescription", "imagestream"));
         when(programRepository.findById(anyInt())).thenReturn(expectedProgram);
 
-        final var actual = programManager.findById(getRandomInt());
+        final Optional<Program> actual = programManager.findById(getRandomInt());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedProgram);
         verify(programRepository, times(1)).findById(anyInt());

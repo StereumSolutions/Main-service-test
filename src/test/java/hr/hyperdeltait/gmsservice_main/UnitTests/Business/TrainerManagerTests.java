@@ -24,10 +24,10 @@ class TrainerManagerTests {
 
     @Test
     void findTrainerById() {
-        final var expectedTrainer = Optional.of(new Trainer(1, "Userito", "Despacito", "Muško",  "imagestream"));
+        final Optional<Trainer> expectedTrainer = Optional.of(new Trainer(1, "Userito", "Despacito", "Muško",  "imagestream"));
         when(trainerRepository.findById(anyInt())).thenReturn(expectedTrainer);
 
-        final var actual = trainerManager.findById(getRandomInt());
+        final Optional<Trainer> actual = trainerManager.findById(getRandomInt());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedTrainer);
         verify(trainerRepository, times(1)).findById(anyInt());

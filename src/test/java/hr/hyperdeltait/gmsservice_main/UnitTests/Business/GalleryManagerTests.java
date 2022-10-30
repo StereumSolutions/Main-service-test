@@ -24,10 +24,10 @@ public class GalleryManagerTests {
 
     @Test
     void findGalleryById(){
-        final var expectedGallery = Optional.of(new Gallery(1, "imagestream"));
+        final Optional<Gallery> expectedGallery = Optional.of(new Gallery(1, "imagestream"));
         when(galleryRepository.findById(anyInt())).thenReturn(expectedGallery);
 
-        final var actual = galleryManager.findById(getRandomInt());
+        final Optional<Gallery> actual = galleryManager.findById(getRandomInt());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedGallery);
         verify(galleryRepository, times(1)).findById(anyInt());

@@ -2,7 +2,6 @@ package hr.hyperdeltait.gmsservice_main.Business;
 
 import hr.hyperdeltait.gmsservice_main.Base.Interfaces.ITrainerManager;
 import hr.hyperdeltait.gmsservice_main.Base.Models.Classes.Trainer;
-import hr.hyperdeltait.gmsservice_main.Base.Models.Commands.TrainerCommand;
 import hr.hyperdeltait.gmsservice_main.Repository.TrainerRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -22,24 +21,5 @@ public class TrainerManager implements ITrainerManager {
 
     @Override
     public Optional<Trainer> findById(Integer id) { return trainerRepository.findById(id); }
-
-
-    private Trainer mapDtoToTrainerPost(TrainerCommand trainerCommand){
-        return new Trainer(
-                trainerCommand.getFirstName(),
-                trainerCommand.getLastName(),
-                trainerCommand.getDescription(),
-                trainerCommand.getImage()
-        );
-    }
-    private Trainer mapDtoToTrainerPut(Integer id, TrainerCommand trainerCommand){
-        return new Trainer(
-                id,
-                trainerCommand.getFirstName(),
-                trainerCommand.getLastName(),
-                trainerCommand.getDescription(),
-                trainerCommand.getImage()
-        );
-    }
 }
 

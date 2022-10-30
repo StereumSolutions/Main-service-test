@@ -2,7 +2,6 @@ package hr.hyperdeltait.gmsservice_main.Business;
 
 import hr.hyperdeltait.gmsservice_main.Base.Interfaces.IPricingManager;
 import hr.hyperdeltait.gmsservice_main.Base.Models.Classes.Pricing;
-import hr.hyperdeltait.gmsservice_main.Base.Models.Commands.PricingCommand;
 import hr.hyperdeltait.gmsservice_main.Repository.PricingRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +22,4 @@ public class PricingManager implements IPricingManager {
 
     @Override
     public Optional<Pricing> findById(Integer id) { return pricingRepository.findById(id); }
-
-
-    private Pricing mapDtoToTrainerPost(PricingCommand pricingCommand){
-        return new Pricing(
-                pricingCommand.getName(),
-                pricingCommand.getDescription(),
-                pricingCommand.getPrice()
-        );
-    }
-    private Pricing mapDtoToTrainerPut(Integer id, PricingCommand pricingCommand){
-        return new Pricing(
-                id,
-                pricingCommand.getName(),
-                pricingCommand.getDescription(),
-                pricingCommand.getPrice()
-        );
-    }
 }

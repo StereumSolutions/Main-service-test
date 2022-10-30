@@ -27,10 +27,10 @@ class PricingManagerTests {
 
     @Test
     void findPricingById(){
-        final var expectedPricing = Optional.of(new Pricing(1, "nametest", "descriptiontest", 10));
+        final Optional<Pricing> expectedPricing = Optional.of(new Pricing(1, "nametest", "descriptiontest", 10));
         when(pricingRepository.findById(anyInt())).thenReturn(expectedPricing);
 
-        final var actual = pricingManager.findById(getRandomInt());
+        final Optional<Pricing> actual = pricingManager.findById(getRandomInt());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedPricing);
         verify(pricingRepository, times(1)).findById(anyInt());

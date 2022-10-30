@@ -33,10 +33,10 @@ class UserManagerTests {
 
     @Test
     void findUserById() {
-        final var expectedUser = Optional.of(new User(1, "Userito", "Despacito", LocalDate.of(2020, 10, 10), "Muško", "email@domain.xyz", "0911", LocalDate.of(2020, 10, 10)));
+        final Optional<User> expectedUser = Optional.of(new User(1, "Userito", "Despacito", LocalDate.of(2020, 10, 10), "Muško", "email@domain.xyz", "0911", LocalDate.of(2020, 10, 10)));
         when(userRepository.findById(anyInt())).thenReturn(expectedUser);
 
-        final var actual = userService.findUserById(getRandomInt());
+        final Optional<User> actual = userService.findUserById(getRandomInt());
 
         assertThat(actual).usingRecursiveComparison().isEqualTo(expectedUser);
         verify(userRepository, times(1)).findById(anyInt());
